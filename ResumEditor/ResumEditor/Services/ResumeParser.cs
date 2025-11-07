@@ -5,9 +5,10 @@ using System.Text.RegularExpressions;
 
 namespace ResumEditor.Services
 {
+
     public static class ResumeParser
     {
-        // Flexible section extractor using regex (ignores spaces & case)
+        // Extract a section with tags, fully adaptive
         public static string ExtractSection(string text, string tag)
         {
             var pattern = $@"\{{\s*{tag}\s*\}}(.*?)\{{\s*:{tag}\s*\}}";
@@ -15,29 +16,28 @@ namespace ResumEditor.Services
             return match.Success ? match.Groups[1].Value.Trim() : "";
         }
 
-        // Flexible skills parser
+        // Parse Skills section, fully adaptive
         public static SkillsSection ParseSkills(string skillsText)
         {
             var skills = new SkillsSection();
-
             foreach (var line in skillsText.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries))
             {
-                if (line.Contains(":"))
-                {
-                    var parts = line.Split(':', 2);
-                    string category = parts[0].Trim();
-                    var items = parts[1].Split(',')
-                                        .Select(s => s.Trim())
-                                        .Where(s => !string.IsNullOrEmpty(s))
-                                        .ToList();
-                    skills.Categories[category] = items;
-                }
-            }
+                var trimmed = line.Trim();
+                if (string.IsNullOrEmpty(trimmed)) continue;
+                if (!trimmed.Contains(":")) continue;
 
+                var parts = trimmed.Split(new[] { ':' }, 2);
+                var category = parts[0].Trim();
+                var items = parts[1].Split(',')
+                                    .Select(s => s.Trim())
+                                    .Where(s => !string.IsNullOrEmpty(s))
+                                    .ToList();
+                skills.Categories[category] = items;
+            }
             return skills;
         }
 
-        // Flexible experience parser
+        // Parse experience section, fully adaptive
         public static List<Experience> ParseExperience(string text)
         {
             var experiences = new List<Experience>();
@@ -49,34 +49,33 @@ namespace ResumEditor.Services
                 string trimmed = line.Trim();
                 if (string.IsNullOrEmpty(trimmed)) continue;
 
-                // Start achievements block
+                // Achievement start
                 if (Regex.IsMatch(trimmed, @"^\{achievement\}", RegexOptions.IgnoreCase))
                 {
                     inAchievement = true;
-                    current.Achievements = new List<string>();
+                    if (current != null && current.Achievements == null)
+                        current.Achievements = new List<string>();
                     continue;
                 }
 
-                // End achievements block
+                // Achievement end
                 if (Regex.IsMatch(trimmed, @"^\{\/?:achievement\}", RegexOptions.IgnoreCase))
                 {
                     inAchievement = false;
                     continue;
                 }
 
-                // Add achievement line
-                if (inAchievement && (trimmed.StartsWith("-") || trimmed.StartsWith("–")))
+                // Achievement line
+                if (inAchievement)
                 {
-                    current.Achievements.Add(trimmed.Substring(1).Trim());
+                    var achievement = trimmed.TrimStart('-', '–', ' ').Trim();
+                    if (!string.IsNullOrEmpty(achievement) && current != null)
+                        current.Achievements.Add(achievement);
                     continue;
                 }
 
-                // Match flexible experience line: optional numbering, optional role
-                // Examples it can match:
-                // 1. Senior Staff Machine Learning Engineer, [Buynomics], (2021 - Present)
-                // 1. [Buynomics], (2021 - Present)
-                // , at Buynomics (2021 - Present)
-                var expPattern = @"^(?:\d+\.\s*)?(?:(.*?),\s*)?\[(.*?)\],\s*\((.*?)\)|, at (.*?) \((.*?)\)";
+                // Detect experience line
+                var expPattern = @"^(?:\d+\.\s*)?(.*?)(?:,?\s*\[([^\]]+)\])?\s*(?:\(([^)]+)\))?$|, at (.*?) \((.*?)\)";
                 var match = Regex.Match(trimmed, expPattern);
                 if (match.Success)
                 {
@@ -84,18 +83,25 @@ namespace ResumEditor.Services
                         experiences.Add(current);
 
                     current = new Experience();
-                    // Check which group matched
+
                     if (!string.IsNullOrEmpty(match.Groups[2].Value))
                     {
                         current.Role = match.Groups[1].Value?.Trim() ?? "";
                         current.Company = match.Groups[2].Value.Trim();
                         current.Dates = match.Groups[3].Value.Trim();
                     }
-                    else
+                    else if (!string.IsNullOrEmpty(match.Groups[4].Value))
                     {
-                        current.Role = "";
+                        current.Role = match.Groups[1].Value?.Trim() ?? "";
                         current.Company = match.Groups[4].Value.Trim();
                         current.Dates = match.Groups[5].Value.Trim();
+                    }
+                    else
+                    {
+                        // Fallback: entire line as role if parsing fails
+                        current.Role = trimmed;
+                        current.Company = "";
+                        current.Dates = "";
                     }
                 }
             }
@@ -106,7 +112,7 @@ namespace ResumEditor.Services
             return experiences;
         }
 
-        // Flexible list parser (Education / Projects)
+        // Parse list sections (Education / Projects)
         public static List<string> ParseListSection(string text)
         {
             return text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries)
@@ -118,7 +124,7 @@ namespace ResumEditor.Services
         // Master parser
         public static DynamicResume ParseDynamicResume(string text)
         {
-            var resume = new DynamicResume
+            return new DynamicResume
             {
                 Summary = ExtractSection(text, "summary"),
                 Skills = ParseSkills(ExtractSection(text, "skills")),
@@ -126,8 +132,6 @@ namespace ResumEditor.Services
                 Education = ParseListSection(ExtractSection(text, "education")),
                 Projects = ParseListSection(ExtractSection(text, "projects"))
             };
-
-            return resume;
         }
     }
 }
