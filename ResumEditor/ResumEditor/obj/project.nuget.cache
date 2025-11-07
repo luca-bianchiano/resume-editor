@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "eecdBVdW9MA=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Paladin\\source\\repos\\resume-editor\\ResumEditor\\ResumEditor\\ResumEditor.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Paladin\\.nuget\\packages\\newtonsoft.json\\13.0.4\\newtonsoft.json.13.0.4.nupkg.sha512"
+  ],
+  "logs": []
+}
