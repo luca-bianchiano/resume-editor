@@ -1,2 +1,33 @@
-node_modules/
+# Build output
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio cache and temporary files
 .vs/
+*.ncb
+*.aps
+*.pch
+*.pdb
+*.cache
+*.log
+
+# Rider/JetBrains
+.idea/
+
+# NuGet packages
+*.nupkg
+packages/
+
+# Config and local secrets (optional)
+# Uncomment if you want to ignore user.json
+# Config/user.json
+
+# Others
+*.dbmdl
+*.DS_Store
