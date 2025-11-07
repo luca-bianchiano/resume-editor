@@ -14,22 +14,31 @@
             <!-- Result Preview -->
         </Grid.RowDefinitions>
 
-        <!-- Static User Info -->
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
-            <StackPanel Margin="0,0,20,0">
-                <TextBlock Text="Name"/>
-                <TextBox x:Name="NameBox" Width="200"/>
+        <!-- Header Input Fields -->
+        <StackPanel Orientation="Vertical" Margin="10" VerticalAlignment="Top">
+            <!-- Static User Info -->
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0,0,0,10">
+                <StackPanel Margin="0,0,20,0">
+                    <TextBlock Text="Name"/>
+                    <TextBox x:Name="NameBox" Width="200"/>
+                </StackPanel>
+                <StackPanel Margin="0,0,20,0">
+                    <TextBlock Text="Title"/>
+                    <TextBox x:Name="TitleBox" Width="200"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Location"/>
+                    <TextBox x:Name="LocationBox" Width="200"/>
+                </StackPanel>
             </StackPanel>
-            <StackPanel Margin="0,0,20,0">
-                <TextBlock Text="Title"/>
-                <TextBox x:Name="TitleBox" Width="200"/>
-            </StackPanel>
-            <StackPanel>
-                <TextBlock Text="Location"/>
-                <TextBox x:Name="LocationBox" Width="200"/>
+            
+            <!-- Template Selector -->
+            <StackPanel Orientation="Horizontal" Margin="10">
+                <TextBlock Text="Select Template:" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <ComboBox x:Name="TemplateDropdown" Width="250" SelectionChanged="TemplateDropdown_SelectionChanged"/>
+                <Button x:Name="GenerateButton" Content="Generate" Width="100" Margin="0,10,0,0" Click="GenerateButton_Click"/>
             </StackPanel>
         </StackPanel>
-
         <!-- Dynamic Resume Input -->
         <TextBox x:Name="ResumeInput"
                  Grid.Row="1"

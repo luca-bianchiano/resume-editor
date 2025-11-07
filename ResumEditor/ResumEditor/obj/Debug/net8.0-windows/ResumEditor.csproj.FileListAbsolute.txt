@@ -22,3 +22,12 @@ C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\obj\Debug\ne
 C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\obj\Debug\net8.0-windows\ResumEdi.7DB287D6.Up2Date
 C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\bin\Debug\net8.0-windows\Config\user.json
 C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\obj\Debug\net8.0-windows\ResumEditor.sourcelink.json
+C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\bin\Debug\net8.0-windows\Templates\resume_coolfreecv_ats_03.docx
+C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\bin\Debug\net8.0-windows\Xceed.Document.NET.dll
+C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\bin\Debug\net8.0-windows\Xceed.Drawing.NET.dll
+C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\bin\Debug\net8.0-windows\Xceed.Words.NET.dll
+C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\bin\Debug\net8.0-windows\SkiaSharp.dll
+C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\bin\Debug\net8.0-windows\runtimes\osx\native\libSkiaSharp.dylib
+C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\bin\Debug\net8.0-windows\runtimes\win-arm64\native\libSkiaSharp.dll
+C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\bin\Debug\net8.0-windows\runtimes\win-x64\native\libSkiaSharp.dll
+C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\bin\Debug\net8.0-windows\runtimes\win-x86\native\libSkiaSharp.dll

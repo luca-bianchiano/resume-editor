@@ -41,7 +41,7 @@ namespace ResumEditor.Services
         public static List<Experience> ParseExperience(string text)
         {
             var experiences = new List<Experience>();
-            Experience current = null;
+            Experience? current = null;
             bool inAchievement = false;
 
             foreach (var line in text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries))

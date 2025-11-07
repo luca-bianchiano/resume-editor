@@ -15,11 +15,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DocX" Version="5.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="Config\user.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Templates\resume_coolfreecv_ats_03.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
