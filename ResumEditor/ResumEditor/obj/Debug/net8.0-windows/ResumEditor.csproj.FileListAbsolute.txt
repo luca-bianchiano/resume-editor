@@ -6,7 +6,6 @@ C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\bin\Debug\ne
 C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\obj\Debug\net8.0-windows\MainWindow.g.cs
 C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\obj\Debug\net8.0-windows\App.g.cs
 C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\obj\Debug\net8.0-windows\ResumEditor_MarkupCompile.cache
-C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\obj\Debug\net8.0-windows\ResumEditor_MarkupCompile.lref
 C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\obj\Debug\net8.0-windows\MainWindow.baml
 C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\obj\Debug\net8.0-windows\ResumEditor.g.resources
 C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\obj\Debug\net8.0-windows\ResumEditor.GeneratedMSBuildEditorConfig.editorconfig
@@ -22,3 +21,4 @@ C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\bin\Debug\ne
 C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\obj\Debug\net8.0-windows\ResumEditor.csproj.AssemblyReference.cache
 C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\obj\Debug\net8.0-windows\ResumEdi.7DB287D6.Up2Date
 C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\bin\Debug\net8.0-windows\Config\user.json
+C:\Users\Paladin\source\repos\resume-editor\ResumEditor\ResumEditor\obj\Debug\net8.0-windows\ResumEditor.sourcelink.json

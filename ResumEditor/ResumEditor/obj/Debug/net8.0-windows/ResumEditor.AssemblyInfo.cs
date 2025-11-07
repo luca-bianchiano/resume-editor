@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ResumEditor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+33c5e644212e29de08d98bc23f143a7a55cfb3fd")]
 [assembly: System.Reflection.AssemblyProductAttribute("ResumEditor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ResumEditor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

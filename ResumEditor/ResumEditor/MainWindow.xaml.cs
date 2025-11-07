@@ -26,6 +26,7 @@ namespace ResumEditor
         {
             InitializeComponent();
             LoadAuthorInfo();
+            this.DataContext = this;
         }
 
         private void LoadAuthorInfo()
@@ -49,7 +50,48 @@ namespace ResumEditor
 
             Author = loaded;
 
-            MessageBox.Show($"Loaded Author: {Author.Name}, {Author.Title}, {Author.Location}");
+        }
+        private void ParseResume_Click(object sender, RoutedEventArgs e)
+        {
+            string rawText = ResumeInput.Text;
+            var dynamicResume = ResumeParser.ParseDynamicResume(rawText);
+
+            // Preview structured output
+            var sb = new StringBuilder();
+
+            if (!string.IsNullOrEmpty(dynamicResume.Summary))
+                sb.AppendLine("Summary: " + dynamicResume.Summary + "\n");
+
+            sb.AppendLine("Skills:");
+            foreach (var cat in dynamicResume.Skills.Categories)
+                sb.AppendLine($"{cat.Key}: {string.Join(", ", cat.Value)}");
+            sb.AppendLine();
+
+            sb.AppendLine("Experience:");
+            foreach (var exp in dynamicResume.Experience)
+            {
+                sb.AppendLine($"{exp.Role} at {exp.Company} ({exp.Dates})");
+                foreach (var ach in exp.Achievements)
+                    sb.AppendLine($" - {ach}");
+            }
+            sb.AppendLine();
+
+            if (dynamicResume.Education.Count > 0)
+            {
+                sb.AppendLine("Education:");
+                foreach (var edu in dynamicResume.Education)
+                    sb.AppendLine(" - " + edu);
+                sb.AppendLine();
+            }
+
+            if (dynamicResume.Projects.Count > 0)
+            {
+                sb.AppendLine("Projects:");
+                foreach (var proj in dynamicResume.Projects)
+                    sb.AppendLine(" - " + proj);
+            }
+
+            ParseResult.Text = sb.ToString();
         }
     }
 }
